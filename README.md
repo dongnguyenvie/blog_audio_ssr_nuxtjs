@@ -6,7 +6,7 @@ Repo in here: https://github.com/dongnguyenvie/be_audiovyvy_django
 
 Demo video: https://drive.google.com/file/d/19ZDzKPfLqTsJn0Ukjq9805u6pINgd2bT/view
 ```
-![Screenshot](master/static/sreenshot-demo.png)
+![Screenshot](/static/sreenshot-demo.png)
 ## Build Setup
 
 ```bash
