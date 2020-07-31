@@ -1,0 +1,26 @@
+version: '3.2'
+
+services:
+  s1_wb:
+    image: node:12.18.1
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/package-lock.json
+      - /app/.nuxt
+    command: sh -c "cd /app && ls && pwd && yarn install && yarn dev:docker"
+    # stdin_open: true
+    # tty: true
+    # deploy:
+    #   replicas: 1
+    #   restart_policy:
+    #     condition: on-failure
+    #     max_attempts: 5
+    #   resources:
+    #     limits:
+    #       cpus: "4"
+    #       memory: 4096M
+    # environment:
+    #   - NODE_ENV=development
