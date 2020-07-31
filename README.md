@@ -2,7 +2,7 @@
 
 ## Backend using drf
 ```
-Repo in here: https://github.com/dongnguyenvie/be_audiovyvy_django
+Repo in here: https://github.com/dongnguyenvie/blog_audio_django_rest_fw
 
 Demo video: https://drive.google.com/file/d/19ZDzKPfLqTsJn0Ukjq9805u6pINgd2bT/view
 ```
