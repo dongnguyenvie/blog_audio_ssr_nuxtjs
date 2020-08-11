@@ -2,7 +2,8 @@
 
 ## Backend using drf
 ```
-Repo in here: https://github.com/dongnguyenvie/blog_audio_django_rest_fw
+Repo in here: https://github.com/dongnguyenvie/blog_audio_django_rest_fw/tree/feature/version_for_blog_audio_ssr_nuxtjs
+You must choose branch name is feature/version_for_blog_audio_ssr_nuxtjs. Because version suiable for this project
 
 Demo video: https://drive.google.com/file/d/19ZDzKPfLqTsJn0Ukjq9805u6pINgd2bT/view
 ```
