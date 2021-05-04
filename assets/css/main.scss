@@ -73,9 +73,17 @@ body {
   background-color: transparent;
   border-color: transparent;
 }
-.ex-left-50 {
-  left: 50%;
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
-.ex-top-50 {
-  top: 50%;
+
+.navbar-show {
+  display: block !important;
+}
+.navbar-hidden {
+  display: none !important;
 }

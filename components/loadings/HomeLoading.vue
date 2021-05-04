@@ -27,15 +27,11 @@ export default Vue.extend({
     start() {
       this.loading = true
     },
-    finish() {
-      // this.loading = false
-    },
+    finish() {},
   },
   components: {
-    // HashtagSessionVue,
     SkeletonArticleBoxVue,
     TrendingSessionVue,
-    // ArticlesSessionVue,
   },
   mounted() {},
 })

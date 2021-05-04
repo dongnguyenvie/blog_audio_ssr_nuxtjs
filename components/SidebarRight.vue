@@ -1,40 +1,23 @@
 <template>
   <div class="flex flex-wrap w-full">
-    <SkeletonArticleFullBoxVue
-      v-for="(article, index) in [
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-        { id: 1 },
-      ]"
-      :key="`list-${article.id}${index}`"
-    />
+    <ArticleListBox v-for="article in data" :data="article" classTitle="font-normal text-sm" class="font-normal text-sm" :key="article.id" />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Action, Getter, Mutation } from 'nuxt-property-decorator'
-import SkeletonArticleFullBoxVue from '~/components/skeletons/ArticleSkeletonFullBox.vue'
+
+import { IArticle } from '~/types/article'
+import ArticleListBox from '~/components/box/ArticleListBox.vue'
 
 @Component({
   components: {
-    SkeletonArticleFullBoxVue,
+    ArticleListBox,
   },
 })
 export default class SidebarRight extends Vue {
   isGird = true
 
-  @Prop({ type: String, default: '' }) readonly title!: string
-
+  @Prop({ type: Array, default: () => [] }) data!: IArticle[]
   @Emit()
   handleToggle(flg?: boolean) {
     if (typeof flg === 'undefined') {

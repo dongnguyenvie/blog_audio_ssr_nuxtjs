@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Action, Getter, Mutation, Watch, Ref } from 'nuxt-property-decorator'
 import APlayer from '~/components/modules/vue-aplayer/vueAplayer.vue'
-import { IAudioResource } from '~/types/audio'
+import { AudioResource } from '~/types/audio'
 
 interface IAudio {
   src: string
@@ -21,7 +21,7 @@ interface IAudio {
   },
 })
 export default class AudioPlayer extends Vue {
-  @Prop({ type: Array }) data!: IAudioResource[]
+  @Prop({ type: Array }) data!: AudioResource[]
 
   currentMusic: null | IAudio = null
 

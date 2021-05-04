@@ -1,4 +1,4 @@
-export interface TLocalStorage {
+export interface LocalStorageEx {
   _prefix: string
   set(key: string, value: any): boolean
   get(key: string, defaultValue: any): any

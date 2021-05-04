@@ -1,9 +1,6 @@
 <template>
-  <div class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 p-2">
-    <a
-      href="/detail/72112620-skoda-octavia-combi-iii-combi-style-green-tec"
-      class="flex flex-col relative w-full bg-white overflow-hidden card translate-3d-none-after card translate-3d-none-after rounded border border-gray-300"
-    >
+  <div class="w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2">
+    <a class="flex flex-col relative w-full bg-white overflow-hidden card translate-3d-none-after card translate-3d-none-after rounded border border-gray-300">
       <div class="relative group text-primary-500" style="padding-top: 70%;">
         <div class="absolute top-0 left-0 h-full w-full">
           <span class="skeleton-box group-hover:scale-110 transition-transform transform-center block h-full"></span>

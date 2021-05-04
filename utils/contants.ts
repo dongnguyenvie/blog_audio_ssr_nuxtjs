@@ -8,8 +8,10 @@ export const API_VERSION = 'v1'
 export const SERVER_API = {
   article: `${API_PREFIX}/${API_VERSION}/article/`,
   articleWithSlug: `${API_PREFIX}/${API_VERSION}/article/slug/`,
+  comment: `${API_PREFIX}/${API_VERSION}/comment/`,
   user: `${API_PREFIX}/${API_VERSION}/user/`,
   blog: `${API_PREFIX}/${API_VERSION}/blog/`,
+  blogWithSlug: `${API_PREFIX}/${API_VERSION}/blog/slug/`,
   widget: `${API_PREFIX}/${API_VERSION}/widget/`,
   category: `${API_PREFIX}/${API_VERSION}/category/`,
   menu: `${API_PREFIX}/${API_VERSION}/menu/`,
@@ -25,6 +27,7 @@ export const LOCALSTORAGE_PREFIX = 'audio__'
 export const TOKEN_KEY = 'TOKEN'
 
 export const PAGE_SIZE_DEFAULT = 10
+export const PAGE_SIZE_OF_CATEGORY_DEFAULT = 18
 
 export const DYNAMICS_HOME_SESSION_SETTING = 'DYNAMICS_HOME_SESSION_SETTING'
 
@@ -46,17 +49,22 @@ export const NAVBAR = [
       {
         icon: 'home',
         label: 'Home',
-        url: 'index',
+        url: 'home-page',
+        name: 'home-page',
+        isEnable: true,
       },
       {
         icon: 'fire',
         label: 'Trending',
         url: 'trending',
+        name: 'trending-page',
+        isEnable: true,
       },
       {
         icon: 'dice-d20',
         label: 'subscriptions',
         url: 'subscriptions',
+        name: 'home-page',
       },
     ],
   },
@@ -67,16 +75,20 @@ export const NAVBAR = [
         icon: 'photo-video',
         label: 'Library',
         url: 'trending',
+        name: 'home-page',
       },
       {
         icon: 'history',
         label: 'history',
         url: 'index',
+        name: 'history-page',
+        isEnable: true,
       },
       {
         icon: 'blog',
         label: 'My blog',
         url: 'index',
+        name: 'home-page',
       },
     ],
   },
@@ -116,4 +128,52 @@ export const ARTICLE_FORMAT = {
     type: 'other',
     component: '',
   },
+  6: {
+    key: 6,
+    type: 'youtube',
+    component: 'YtbPlayer',
+  },
 } as Record<number, { key: number; type: string; component: string }>
+
+export const LOCAL_STORE_DB_NAME = 'localstore-db'
+export const COLLECT_KEY = 'local-collect'
+
+export const AUDIO_LISTED_HISTORY_KEY = 'AUDIO_LISTED_HISTORY_KEY'
+
+export const ROUTE_NAMES = Object.freeze({
+  homePage: 'home-page',
+  page404: '404-page',
+  page422: '422-page',
+  page500: '500-page',
+  articleHistoryPage: 'history-page',
+  articleDetailPage: 'artilce-detail-page',
+  categoryDetailPage: 'category-detail-page',
+  categoryPage: 'category-page',
+  trendingPage: 'trending-page',
+  blogPage: 'blog-page',
+  blogDetailPage: 'blog-detail-page',
+})
+
+export const BREAKPOINTS_NM = {
+  small: {
+    value: 640,
+    name: 'sm',
+  },
+  medium: {
+    value: 768,
+    name: 'md',
+  },
+  large: {
+    value: 1024,
+    name: 'lg',
+  },
+  extraLarge: {
+    value: 1280,
+    name: 'xl',
+  },
+  extraSmall: {
+    name: 'xs',
+  },
+}
+
+export const USER_PROFILE_KEY = 'user'

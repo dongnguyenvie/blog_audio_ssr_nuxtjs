@@ -1,4 +1,4 @@
-import { browserStorage } from '~/utils/LocalStorage'
+import { browserStorage } from '~/utils/localStorage'
 import { TOKEN_KEY } from '~/utils/contants'
 
 class Authencation {

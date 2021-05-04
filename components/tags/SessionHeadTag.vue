@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between w-full">
-    <h3 class="w-full block text-2xl pb-5 mx-2 font-medium">{{ title }}</h3>
+    <h3 v-if="title" class="w-full block text-2xl pb-5 mx-2 font-medium">{{ title }}</h3>
     <div class="flex flex-no-wrap">
       <font-awesome-icon
         :icon="['fas', 'th-list']"
@@ -30,9 +30,10 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Action, Getter, Mutation } from 'nuxt-property-decorator'
+
 import ArticleBoxVue from '~/components/ArticleBox.vue'
 import ArticleFullBoxVue from '~/components/ArticleFullBox.vue'
-import NoDataBoxVue from '~/components/NoDataBox.vue'
+import NoDataBoxVue from '~/components/box/NoDataBox.vue'
 
 @Component
 export default class SessionHeadTag extends Vue {

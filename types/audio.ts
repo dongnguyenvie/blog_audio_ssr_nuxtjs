@@ -1,4 +1,4 @@
-export interface IAudioResource {
+export interface AudioResource {
   url: string
   title: string
 }

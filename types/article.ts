@@ -1,14 +1,14 @@
 import { recommendData, hashtagData } from '~/mock/seed'
-import { IMeta } from '~/types/meta'
+import { Meta } from '~/types/meta'
 
-interface IBaseArticle {
+interface BaseArticle {
   id: string
   title: string
   slug: string
   thumbnail: string
 }
-export interface IArticle extends IBaseArticle {
-  meta: IMeta
+export interface IArticle extends BaseArticle {
+  meta: Meta
   id_audio: string
   blog: string
   excerpt: string
@@ -24,18 +24,20 @@ export interface IArticle extends IBaseArticle {
   tags: any[]
   categories: string[]
 }
-export interface ISectionArticle extends IBaseArticle {
+export interface SectionArticle extends BaseArticle {
   excerpt: string
   title: string
   blog?: string
   customer?: string
   categories?: string[]
-  meta?: IMeta
+  meta?: Meta
+  blog_title: string
+  blog_slug: string
 }
 
-export interface IWachingArticle extends IBaseArticle {
+export interface IWachingArticle extends BaseArticle {
   idWs: string
 }
 
 export type TArticles = typeof recommendData.data & IArticle[]
-export type TTrendingList = ISectionArticle[]
+export type TTrendingList = SectionArticle[]

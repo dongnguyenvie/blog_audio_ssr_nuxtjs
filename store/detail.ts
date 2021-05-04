@@ -22,8 +22,8 @@ export const actions: ActionTree<TDetailState, TRootState> = {
   async [DETAIL_MODULE.actionFetchArticleData]({ commit }, slug) {
     try {
       let articleDetail = await requestAPI.get(SERVER_API.articleWithSlug + slug + '/')
-      commit(DETAIL_MODULE.mutationSetArticleData, articleDetail)
-      return true
+      // commit(DETAIL_MODULE.mutationSetArticleData, articleDetail)
+      return articleDetail
     } catch (error) {
       return false
     }

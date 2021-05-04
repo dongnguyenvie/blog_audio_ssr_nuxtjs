@@ -1,15 +1,15 @@
 <template>
-  <nav class="fixed w-screen z-10 bg-white">
+  <nav class="fixed w-screen z-20 bg-white">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex flex-no-wrap md:w-3/12 lg:w-3/12 xl:w-2/12 overflow-hidden">
-          <div class="flex justify-start items-center ali w-auto">
+          <div class="flex justify-start items-center ali w-auto cursor-pointer" @click="handleToggleMenu">
             <font-awesome-icon class="text-2xl fill-current text-gray-600" :icon="['fas', 'bars']"></font-awesome-icon>
           </div>
           <div class="ml-4">
-            <a href="/" @click.prevent="handleGoHome">
+            <nuxt-link :to="{ name: $routeNames.homePage }" tag="a">
               <img :src="logoUrl" class="w-full" />
-            </a>
+            </nuxt-link>
           </div>
         </div>
         <div class="px-0 hidden flex-grow pl-2 md:block lg:pl-4">
@@ -66,14 +66,23 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop, Emit, Action, Getter, Mutation } from 'nuxt-property-decorator'
+import { ROOT_MODULE, UI_MODULE } from '~/types/store'
 
 @Component
 export default class Header extends Vue {
   logoUrl = 'https://i.ya-webdesign.com/images/air-waves-png-7.png'
 
+  // @Getter(ROOT_MODULE.getNavBar) navbar!: number
+  @Mutation(UI_MODULE.mutationSetStatusNavBar, { namespace: UI_MODULE.namespace }) onSetToggleMenu!: (payload: { toggle: boolean }) => void
+
   @Emit()
   handleGoHome() {
-    this.$router.push({ name: 'index' })
+    this.$router.push({ name: this.$routeNames.homePage })
+  }
+
+  @Emit()
+  handleToggleMenu() {
+    this.onSetToggleMenu({ toggle: true })
   }
 }
 </script>

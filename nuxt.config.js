@@ -1,3 +1,5 @@
+const { join } = require('path')
+
 export default {
   // loading: '~/components/loadings/HomeLoading.vue',
   /*
@@ -15,7 +17,7 @@ export default {
   head: {
     title: process.env.npm_package_name || '',
     meta: [
-      { charset: 'utf-8' },
+      { charset: 'utf-8', 'http-equiv': 'Content-Type', content: 'text/html' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
@@ -39,7 +41,12 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [{ src: '~/plugins/websocket-channel', mode: 'client', ssr: false }],
+  plugins: [
+    { src: '~/plugins/localforage', mode: 'client', ssr: false },
+    { src: '~/plugins/websocket-channel', mode: 'client', ssr: false },
+    { src: '~/plugins/mixins' },
+    { src: '~/plugins/initialClient', mode: 'client', ssr: false },
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -49,6 +56,9 @@ export default {
     '@nuxtjs/tailwindcss',
     // Doc: https://www.npmjs.com/package/@nuxtjs/moment
     '@nuxtjs/moment',
+    // Doc: https://github.com/nuxt-community/router-module
+    '@nuxtjs/router',
+    // Doc: https://github.com/nuxt-community/localforage-module
   ],
   /*
    ** Nuxt.js modules
@@ -62,6 +72,20 @@ export default {
     // With options
     'nuxt-fontawesome',
     '@nuxtjs/svg',
+    [
+      'nuxt-lazy-load',
+      {
+        // These are the default values
+        // images: true,
+        // videos: true,
+        // audios: true,
+        // iframes: true,
+        // native: false,
+        // polyfill: true,
+        directiveOnly: true,
+        defaultImage: '/images/default-image.png',
+      },
+    ],
   ],
   /*
    ** Axios module configuration
@@ -83,8 +107,7 @@ export default {
     vendor: ['vue-awesome'],
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'http://pi-ubuntu1.local:8000/',
-    apiUrl: process.env.API_URL || '',
+    API_URL: process.env.API_URL || '',
     WEBSOCKET_API_URL: process.env.WEBSOCKET_API_URL,
     ENABLE_WEBSOCKET_PLUGIN: process.env.ENABLE_WEBSOCKET_PLUGIN,
   },
@@ -104,5 +127,18 @@ export default {
     defaultTimezone: 'Asia/Ho_Chi_Minh',
     defaultLocale: 'vi',
     locales: ['vi'],
+  },
+  routerModule: {
+    keepDefaultRouter: false,
+    path: join(__dirname, 'routes'),
+    fileName: 'index.ts',
+  },
+  localforage: {
+    instances: [
+      {
+        name: 'audioVyVyApp',
+        storeName: 'media',
+      },
+    ],
   },
 }

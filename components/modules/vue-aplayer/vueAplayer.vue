@@ -711,7 +711,7 @@ export default class APlayer extends Vue {
         flex-grow: 1;
 
         overflow: hidden;
-        white-space: nowrap;
+        /* white-space: nowrap; */
         text-overflow: ellipsis;
         margin-left: 5px;
         user-select: text;

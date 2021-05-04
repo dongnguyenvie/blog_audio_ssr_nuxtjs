@@ -1,15 +1,15 @@
 import { LOCALSTORAGE_PREFIX } from './contants'
 import _ from 'lodash'
-import { TLocalStorage } from '~/types/utils'
+import { LocalStorageEx } from '~/types/utils'
 
-class LocalStorage implements TLocalStorage {
+class LocalStorage implements LocalStorageEx {
   _prefix = LOCALSTORAGE_PREFIX
 
   set(key: string, value: any) {
     let flg = true
     try {
       const _key = this.getKey(key)
-      let _value = JSON.parse(value)
+      let _value = JSON.stringify(value)
       localStorage.setItem(_key, _value)
     } catch (error) {
       flg = false

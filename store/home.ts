@@ -40,10 +40,10 @@ export const actions: ActionTree<THomeState, TRootState> = {
     let trendingData = await requestAPI.get(SERVER_API.article, {
       params: {
         ...params.activeRecord,
-        ...params.pagination(),
+        ...params.pagination(15),
         ...params.orderingTopView,
         ...params.defaultFields(),
-        ...params.uncategories(false),
+        ...params.generateLookup.equal(['has_category'], true),
       },
     })
     commit(HOME_MODULE.mutationSetTrending, trendingData)
@@ -52,33 +52,36 @@ export const actions: ActionTree<THomeState, TRootState> = {
   async [HOME_MODULE.actionFetchDynamicHomeSessions]({ commit, rootGetters }) {
     let categoriesHomeSessions = []
     let dynamicsHomeSessionSetting = rootGetters[ROOT_MODULE.getSettingsRecord][DYNAMICS_HOME_SESSION_SETTING] || []
+
     for (let i = 0; i < dynamicsHomeSessionSetting.length; i++) {
-      const { id, key, value, option } = dynamicsHomeSessionSetting[i]
-      const category = JSON.parse(value)
-      let dynamicHomeSession = await requestAPI.get(SERVER_API.article, {
-        params: {
-          ...params.activeRecord,
-          ...params.uncategories(false),
-          ...params.pagination(12),
-          ...params.defaultFields('id,slug,title,excerpt,thumbnail,customer,blog,categories,meta'),
-          ...params.categories(category.id),
-        },
-      })
-      category.articles = dynamicHomeSession.results
-      categoriesHomeSessions.push(category)
+      try {
+        const { id, key, value, option } = dynamicsHomeSessionSetting[i]
+        const category = JSON.parse(value)
+        let dynamicHomeSession = await requestAPI.get(SERVER_API.article, {
+          params: {
+            ...params.activeRecord,
+            ...params.generateLookup.equal(['has_category'], true),
+            ...params.pagination(12),
+            ...params.defaultFields('id,slug,title,excerpt,thumbnail,customer,blog,categories,meta,blog_title,blog_slug'),
+            ...params.generateLookup.exact(['categories', 'id'], category.id),
+          },
+        })
+        category.articles = dynamicHomeSession.results
+        categoriesHomeSessions.push(category)
+      } catch (error) {}
     }
+    categoriesHomeSessions = categoriesHomeSessions.sort((a: any, b: any) => (b.order || 0) - (a.order || 0))
     commit(HOME_MODULE.mutationSetDynamicHomeSessions, categoriesHomeSessions)
   },
   async [HOME_MODULE.actionFetchRecommendData]({ commit, rootGetters, state, rootState }) {
-    let queryParams = params.generateParams({
-      ...params.activeRecord,
-      ...params.uncategories(false),
-      ...params.pagination(12),
-      ...params.defaultFields('id,slug,title,excerpt,thumbnail,customer,blog,categories'),
-      ...(!rootState.tagsSelected.length || rootState.tagsSelected.includes('all') ? {} : params.tags(rootState.tagsSelected)),
-    })
     let recommendData = await requestAPI.get(SERVER_API.article, {
-      params: queryParams,
+      params: {
+        ...params.activeRecord,
+        ...params.pagination(12),
+        ...params.defaultFields('id,slug,title,excerpt,thumbnail,customer,blog,categories'),
+        ...params.generateLookup.equal(['has_category'], true),
+        ...(!rootState.tagsSelected.length || rootState.tagsSelected.includes('all') ? {} : params.generateLookup.in(['tags', 'id'], rootState.tagsSelected)),
+      },
     })
     commit(HOME_MODULE.mutationSetRecommend, recommendData)
   },

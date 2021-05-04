@@ -1,4 +1,4 @@
-export interface IVideoResource {
+export interface VideoResource {
   title: string
   id: string
 }

@@ -1,4 +1,4 @@
-export interface ITag {
+export interface Tag {
   id: string
   title: string
   content: string
@@ -8,5 +8,5 @@ export interface ITag {
   meta: string
 }
 
-export type TTag = ITag
-export type THashtag = ITag[]
+export type TTag = Tag
+export type THashtag = Tag[]

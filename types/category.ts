@@ -1,12 +1,12 @@
-import { IMeta } from './meta'
-import { ISectionArticle } from '~/types/article'
-export interface IBaseCategory {
+import { Meta } from './meta'
+import { SectionArticle } from '~/types/article'
+export interface BaseCategory {
   id: string
   slug: string
   title: string
 }
-export interface ICategory extends IBaseCategory {
-  meta: IMeta
+export interface Category extends BaseCategory {
+  meta: Meta
   description: string
   status: string
   isDeleted: boolean
@@ -14,8 +14,8 @@ export interface ICategory extends IBaseCategory {
   timestamp: Date
 }
 
-export interface ICategoryWithArticles extends ICategory {
-  articles: ISectionArticle[]
+export interface CategoryWithArticles extends Category {
+  articles: SectionArticle[]
 }
 
-export type TCategoriesRecord = Record<string, ICategory>
+export type TCategoriesRecord = Record<string, Category>

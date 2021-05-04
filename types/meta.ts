@@ -1,4 +1,4 @@
-export interface IMeta {
+export interface Meta {
   id: string
   jsonLd: string
   view: number

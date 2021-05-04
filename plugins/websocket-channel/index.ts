@@ -11,9 +11,10 @@ declare module 'vue/types/vue' {
 }
 
 const websocketChannel: Plugin = (context, inject) => {
-  const { store, env } = context
-  if (env.ENABLE_WEBSOCKET_PLUGIN === 'true') {
-    let ws = new ReconnectingWebSocket(env.WEBSOCKET_API_URL + WEBSOCKET_API.popularWachingAudio)
+  const { store } = context
+
+  if (process.env.ENABLE_WEBSOCKET_PLUGIN === 'true') {
+    let ws = new ReconnectingWebSocket(process.env.WEBSOCKET_API_URL + WEBSOCKET_API.popularWachingAudio)
     event.provider(ws, store)
 
     Vue.prototype.$ws = ws
